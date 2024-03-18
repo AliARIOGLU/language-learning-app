@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Header } from "./header";
 import { QuestionBubble } from "./question-bubble";
 import { Challenge } from "./challenge";
+import { ChallengeFooter } from "./challenge-footer";
 
 interface QuizProps {
   initialLessonId: number;
@@ -34,8 +35,17 @@ export const Quiz = ({
     return uncompletedIndex === -1 ? 0 : uncompletedIndex;
   });
 
+  const [selectedOption, setSelectedOption] = useState<number>();
+  const [status, setStatus] = useState<"none" | "correct" | "wrong">("none");
+
   const currentChallenge = challenges[activeIndex];
   const options = currentChallenge?.challengeOptions ?? [];
+
+  const onSelect = (id: number) => {
+    if (status !== "none") return;
+
+    setSelectedOption(id);
+  };
 
   const title =
     currentChallenge.type === "ASSIST"
@@ -61,9 +71,9 @@ export const Quiz = ({
               )}
               <Challenge
                 options={options}
-                onSelect={() => {}}
+                onSelect={onSelect}
                 status="none"
-                selectedOption={undefined}
+                selectedOption={selectedOption}
                 disabled={false}
                 type={currentChallenge.type}
               />
@@ -71,6 +81,11 @@ export const Quiz = ({
           </div>
         </div>
       </div>
+      <ChallengeFooter
+        disabled={!selectedOption}
+        status={status}
+        onCheck={() => {}}
+      />
     </>
   );
 };
