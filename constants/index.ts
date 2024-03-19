@@ -1,3 +1,5 @@
+export const POINTS_TO_REFILL = 10;
+
 export const sidebarItems = [
   { id: 1, label: "Learn", href: "/learn", iconSrc: "/learn.svg" },
   {

@@ -4,12 +4,12 @@ import { CheckCircle, XCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
-interface ChallengeFooterProps {
+type ChallengeFooterProps = {
   onCheck: () => void;
   status: "correct" | "wrong" | "none" | "completed";
   disabled?: boolean;
-  lessonId?: boolean;
-}
+  lessonId?: number;
+};
 
 export const ChallengeFooter = ({
   onCheck,
@@ -23,7 +23,7 @@ export const ChallengeFooter = ({
   return (
     <footer
       className={cn(
-        "lg:h-[140px] h-[100px] border-t-2",
+        "lg:-h[140px] h-[100px] border-t-2",
         status === "correct" && "border-transparent bg-green-100",
         status === "wrong" && "border-transparent bg-rose-100"
       )}
