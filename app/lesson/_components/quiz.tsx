@@ -11,7 +11,7 @@ import { Challenge } from "./challenge";
 import { QuestionBubble } from "./question-bubble";
 import { ChallengeFooter } from "./challenge-footer";
 import { reduceHearts } from "@/actions/user-progress";
-import { challengeOptions, challenges } from "@/db/schema";
+import { challengeOptions, challenges, userSubscription } from "@/db/schema";
 import { upsertChallengeProgress } from "@/actions/challenge-progress";
 import Image from "next/image";
 import { ResultCard } from "./result-card";
@@ -26,7 +26,11 @@ interface QuizProps {
   })[];
   initialHearts: number;
   initialPercentage: number;
-  userSubscription: any;
+  userSubscription:
+    | (typeof userSubscription.$inferSelect & {
+        isActive: boolean;
+      })
+    | null;
 }
 
 export const Quiz = ({
