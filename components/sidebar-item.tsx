@@ -1,19 +1,28 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
+import { Button } from "./ui/button";
 
 interface SidebarItemProps {
   label: string;
   iconSrc: string;
   href: string;
+  isAdmin?: boolean;
 }
 
-export const SidebarItem = ({ label, iconSrc, href }: SidebarItemProps) => {
+export const SidebarItem = ({
+  label,
+  iconSrc,
+  href,
+  isAdmin,
+}: SidebarItemProps) => {
   const pathname = usePathname();
   const active = pathname === href;
+
+  if (!isAdmin && label === "Admin Page") return null;
 
   return (
     <Button

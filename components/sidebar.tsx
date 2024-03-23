@@ -1,17 +1,20 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ClerkLoading, ClerkLoaded, UserButton } from "@clerk/nextjs";
 import { Loader } from "lucide-react";
+import { ClerkLoading, ClerkLoaded, UserButton } from "@clerk/nextjs";
 
 import { cn } from "@/lib/utils";
 import { SidebarItem } from "./sidebar-item";
 import { sidebarItems } from "@/constants";
+import { getIsAdmin } from "@/lib/admin";
 
 interface SiderProps {
   className?: string;
 }
 
 export const Sidebar = ({ className }: SiderProps) => {
+  const isAdmin = getIsAdmin();
+
   return (
     <div
       className={cn(
@@ -34,6 +37,7 @@ export const Sidebar = ({ className }: SiderProps) => {
             label={item.label}
             href={item.href}
             iconSrc={item.iconSrc}
+            isAdmin={isAdmin}
           />
         ))}
       </div>

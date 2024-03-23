@@ -10,6 +10,7 @@ export const sidebarItems = [
   },
   { id: 3, label: "Quests", href: "/quests", iconSrc: "/quests.svg" },
   { id: 4, label: "Shop", href: "/shop", iconSrc: "/shop.svg" },
+  { id: 5, label: "Admin Page", href: "/admin", iconSrc: "/admin.svg" },
 ];
 
 export const quests = [
